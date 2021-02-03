@@ -4,12 +4,15 @@ import { StyleSheet, Text, View } from "react-native"
 import { NavigationContainer } from "@react-navigation/native"
 import DeckList from "./components/DeckList"
 import AddCard from "./components/AddCard"
+import AddDeck from "./components/AddDeck"
+
 
 export default function App() {
   return (
     <View style={styles.container}>
       <DeckList />
       <AddCard />
+      <AddDeck />
       <StatusBar style="auto" />
     </View>
   )
