@@ -47,8 +47,8 @@ const styles = StyleSheet.create({
   },
 })
 
-const mapStateToProps = (state, { id }) => {
-  const deck = state[id]
+const mapStateToProps = (state, { title }) => {
+  const deck = state[title]
 
   return {
     deck,
