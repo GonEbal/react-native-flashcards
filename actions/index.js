@@ -1,33 +1,41 @@
-export const RECEIVE_DECKS = 'RECEIVE_DECKS'
-export const ADD_DECK = 'ADD_DECK'
-export const REMOVE_DECK = 'REMOVE_DECK'
-export const ADD_CARD = 'ADD_CARD'
+import { RECEIVE_DECKS, ADD_DECK, REMOVE_DECK, ADD_CARD } from "../actions"
 
-export function receiveDecks(decks) {
-    return {
-        type: RECEIVE_DECKS,
-        decks
+function decks(state = {}, action) {
+  switch (action.type) {
+    case RECEIVE_DECKS: {
+      return {
+        ...state,
+        ...action.decks,
+      }
     }
+    case ADD_DECK: {
+      const { title } = action
+      return {
+        ...state,
+        [title]: { title, questions: [] },
+      }
+    }
+    case REMOVE_DECK: {
+      const { title } = action
+      const { [title]: value, ...newState } = state
+      return newState
+    }
+
+    case ADD_CARD: {
+      const { title, card } = action
+      return {
+        ...state,
+        [title]: {
+          ...state[title],
+          ["questions"]: state[title].questions.concat(card),
+        },
+      }
+    }
+
+    default: {
+      return state
+    }
+  }
 }
 
-export function saveDeckTitle(title) {
-    return {
-        type: ADD_DECK,
-        title
-    }
-}
-
-export function removeDeck(title) {
-    return {
-        type: REMOVE_DECK,
-        title
-    }
-}
-
-export function addCard(title, card) {
-    return {
-        type: ADD_CARD,
-        title,
-        card
-    }
-}
+export default decks
