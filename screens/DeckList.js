@@ -1,18 +1,34 @@
 import React, { Component } from "react";
-import { View, StyleSheet, Text } from "react-native";
-import { connect } from 'react-redux';
-import { handleInitialData } from '../actions';
+import {
+	ScrollView,
+	View,
+	Text,
+	StyleSheet,
+	TouchableOpacity,
+} from "react-native";
+import { connect } from "react-redux";
+import { handleInitialData } from "../actions";
 
 class DeckList extends Component {
 	componentDidMount() {
-    	this.props.handleInitialData();
-  	}
+		this.props.handleInitialData();
+	}
 	render() {
 		const { decks, navigation } = this.props;
 		return (
-			<View>
-				<Text>Deck List</Text>
-			</View>
+			<ScrollView>
+				<Text>Mobile Flashcards</Text>
+				{Object.values(decks).map((deck) => {
+					return (
+						<TouchableOpacity
+							key={deck.title}
+						>
+							<Text>{deck.title}</Text>
+						</TouchableOpacity>
+					);
+				})}
+				<View style={{ marginBottom: 30 }} />
+			</ScrollView>
 		);
 	}
 }
