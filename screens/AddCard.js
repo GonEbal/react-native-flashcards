@@ -2,14 +2,14 @@ import React, { Component } from "react"
 import { View, StyleSheet, Text } from "react-native"
 import { YELLOW } from "../utils/colors"
 
-class AddDeck extends Component {
+class AddCard extends Component {
 	render() {
 		return (
-			<View>
-				<Text>AddDeck</Text>
+			<View style={{ flex: 1 }}>
+				<Text>Add Card</Text>
 			</View>
 		)
 	}
 }
 
-export default AddDeck
+export default AddCard
