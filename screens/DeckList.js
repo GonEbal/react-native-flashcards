@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 import { handleInitialData } from "../actions";
+import Deck from './Deck';
 
 class DeckList extends Component {
 	componentDidMount() {
@@ -23,7 +24,7 @@ class DeckList extends Component {
 						<TouchableOpacity
 							key={deck.title}
 						>
-							<Text>{deck.title}</Text>
+							<Deck id={deck.title} />
 						</TouchableOpacity>
 					);
 				})}
