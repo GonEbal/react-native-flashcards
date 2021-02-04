@@ -7,7 +7,7 @@ import {
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import DeckList from "../screens/DeckList";
-import { ORANGE, WHITE } from "../utils/colors";
+import { LightBlue, Gray } from "../utils/colors";
 import AddDeck from "../screens/AddDeck";
 import { Platform } from "react-native";
 
@@ -23,11 +23,11 @@ function TabNav() {
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
 
-                    if (route.name === "DeckList") {
+                    if (route.name === "Deck List") {
                         iconName = focused
                             ? "ios-bookmarks"
                             : "ios-bookmarks-outline";
-                    } else if (route.name === "AddDeck") {
+                    } else if (route.name === "Add Deck") {
                         iconName = focused
                             ? "add-circle"
                             : "add-circle-outline";
@@ -36,12 +36,12 @@ function TabNav() {
                 },
             })}
             tabBarOptions={{
-                activeTintColor: "#00BBF2",
-                inactiveTintColor: "gray",
+                activeTintColor: LightBlue,
+                inactiveTintColor: Gray,
             }}
         >
-            <Tabs.Screen name="DeckList" component={DeckList} />
-            <Tabs.Screen name="AddDeck" component={AddDeck} />
+            <Tabs.Screen name="Deck List" component={DeckList} />
+            <Tabs.Screen name="Add Deck" component={AddDeck} />
         </Tabs.Navigator>
     );
 }
