@@ -1,25 +1,35 @@
-import React, { Component } from "react";
-import { View, StyleSheet, Text, TextInput } from "react-native";
-import TouchButton from "../components/TouchButton";
-import { Gray, Main, White } from "../utils/colors";
-import { connect } from "react-redux";
-import { addCard } from '../actions/index';
-import { addCardToDeckAsync } from '../utils/api';
+import React, { Component } from "react"
+import { View, StyleSheet, Text, TextInput } from "react-native"
+import TouchButton from "../components/TouchButton"
+import { Gray, Main, White } from "../utils/colors"
+import { connect } from "react-redux"
+import { addCard } from "../actions/index"
+import { addCardAsync } from "../utils/api"
 
 class AddCard extends Component {
 	state = {
 		question: "",
 		answer: "",
-	};
+	}
 	handleQuestionChange = (question) => {
-		this.setState({ question });
-	};
+		this.setState({ question })
+	}
 	handleAnswerChange = (answer) => {
-		this.setState({ answer });
-	};
+		this.setState({ answer })
+	}
 	handleSubmit = () => {
-		
-	};
+		const { addCard, title, navigation } = this.props
+		const card = {
+			question: this.state.question,
+			answer: this.state.answer,
+		}
+
+		addCard(title, card)
+		addCardAsync(title, card)
+
+		this.setState({ question: "", answer: "" })
+		navigation.goBack()
+	}
 	render() {
 		return (
 			<View style={styles.container}>
@@ -54,7 +64,7 @@ class AddCard extends Component {
 				</View>
 				<View />
 			</View>
-		);
+		)
 	}
 }
 
@@ -80,13 +90,13 @@ const styles = StyleSheet.create({
 		height: 40,
 		marginBottom: 20,
 	},
-});
+})
 
 const mapStateToProps = (state, ownProps) => {
-	const title = ownProps.route.params.title;
+	const title = ownProps.route.params.title
 	return {
 		title,
-	};
-};
+	}
+}
 
-export default connect(mapStateToProps)(AddCard);
+export default connect(mapStateToProps, { addCard })(AddCard)

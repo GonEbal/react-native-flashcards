@@ -21,7 +21,7 @@ export async function getDecks() {
   }
 }
 
-export async function addCardToDeckAsync(title, card) {
+export async function addCardAsync(title, card) {
   try {
     const deck = await getDeck(title);
 
