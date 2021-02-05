@@ -2,11 +2,18 @@ import React, { Component } from "react";
 import { View, StyleSheet, Text, TextInput } from "react-native";
 import TouchButton from "../components/TouchButton";
 import { Gray, Main } from "../utils/colors";
+import { connect } from "react-redux";
 
 class AddCard extends Component {
 	state = {
 		question: "",
 		answer: "",
+	};
+	handleQuestionChange = (question) => {
+		this.setState({ question });
+	};
+	handleAnswerChange = (answer) => {
+		this.setState({ answer });
 	};
 	render() {
 		return (
@@ -19,15 +26,15 @@ class AddCard extends Component {
 						<TextInput
 							placeholder="Question"
 							style={styles.input}
-							autoFocus={true} 
-							
+							autoFocus={true}
+							onChangeText={this.handleQuestionChange}
 						/>
 					</View>
 					<View>
-						<TextInput 
-						placeholder="Answer" 
-						style={styles.input} 
-						
+						<TextInput
+							placeholder="Answer"
+							style={styles.input}
+							onChangeText={this.handleAnswerChange}
 						/>
 					</View>
 					<TouchButton>Submit</TouchButton>
@@ -62,4 +69,11 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default AddCard;
+const mapStateToProps = (state, ownProps) => {
+	const title = ownProps.route.params.title;
+	return {
+		title,
+	};
+};
+
+export default connect(mapStateToProps)(AddCard);
