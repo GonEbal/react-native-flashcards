@@ -3,6 +3,8 @@ import { View, StyleSheet, Text, TextInput } from "react-native";
 import TouchButton from "../components/TouchButton";
 import { Gray, Main, White } from "../utils/colors";
 import { connect } from "react-redux";
+import { addCard } from '../actions/index';
+import { addCardToDeckAsync } from '../utils/api';
 
 class AddCard extends Component {
 	state = {
