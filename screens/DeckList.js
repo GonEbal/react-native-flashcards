@@ -1,15 +1,56 @@
-import React, { Component } from "react"
-import { View, StyleSheet, Text } from "react-native"
-import { YELLOW } from "../utils/colors"
+import React, { Component } from "react";
+import {
+	ScrollView,
+	View,
+	Text,
+	StyleSheet,
+	TouchableOpacity,
+} from "react-native";
+import { connect } from "react-redux";
+import { handleInitialData } from "../actions";
+import Deck from "./Deck";
+import { Main, White, Gray } from "../utils/colors";
 
 class DeckList extends Component {
+	componentDidMount() {
+		this.props.handleInitialData();
+	}
 	render() {
+		const { decks, navigation } = this.props;
 		return (
-			<View>
-				<Text>Deck List</Text>
-			</View>
-		)
+			<ScrollView style={styles.container}>
+				<Text style={styles.title}>Mobile Flashcards</Text>
+				{Object.values(decks).map((deck) => {
+					return (
+						<TouchableOpacity
+							key={deck.title}
+							onPress={() =>
+								navigation.navigate("DeckDetail", { title: deck.title })
+							}
+						>
+							<Deck title={deck.title} />
+						</TouchableOpacity>
+					);
+				})}
+				<View style={{ marginBottom: 30 }} />
+			</ScrollView>
+		);
 	}
 }
 
-export default DeckList
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		paddingTop: 16,
+	},
+	title: {
+		fontSize: 40,
+		textAlign: "center",
+		marginBottom: 16,
+		color: Main,
+	},
+});
+
+const mapStateToProps = (state) => ({ decks: state });
+
+export default connect(mapStateToProps, { handleInitialData })(DeckList);
