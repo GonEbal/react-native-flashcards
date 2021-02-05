@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, StyleSheet, Text, TextInput } from "react-native";
 import TouchButton from "../components/TouchButton";
-import { Gray, Main } from "../utils/colors";
+import { Gray, Main, White } from "../utils/colors";
 import { connect } from "react-redux";
 
 class AddCard extends Component {
@@ -14,6 +14,9 @@ class AddCard extends Component {
 	};
 	handleAnswerChange = (answer) => {
 		this.setState({ answer });
+	};
+	handleSubmit = () => {
+		
 	};
 	render() {
 		return (
@@ -37,7 +40,15 @@ class AddCard extends Component {
 							onChangeText={this.handleAnswerChange}
 						/>
 					</View>
-					<TouchButton>Submit</TouchButton>
+					<TouchButton
+						onPress={this.handleSubmit}
+						disabled={
+							this.state.question === "" ||
+							this.state.answer === ""
+						}
+					>
+						Submit
+					</TouchButton>
 				</View>
 				<View />
 			</View>
@@ -58,8 +69,8 @@ const styles = StyleSheet.create({
 	},
 	input: {
 		borderWidth: 1,
-		borderColor: "gray",
-		backgroundColor: "#fff",
+		borderColor: Gray,
+		backgroundColor: White,
 		paddingLeft: 10,
 		paddingRight: 10,
 		borderRadius: 5,

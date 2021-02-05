@@ -43,8 +43,9 @@ const styles = StyleSheet.create({
     borderColor: "#999",
   },
   btnDisabled: {
-    backgroundColor: Gray,
-    borderColor: RED,
+    backgroundColor: lightGray,
+    borderWidth: 1,
+    borderColor: '#999999',
   },
   btnText: {
     fontSize: 20,
@@ -52,6 +53,6 @@ const styles = StyleSheet.create({
     color: White,
   },
   btnTextDisabled: {
-    color: White,
+    color: '#666666',
   },
 })
