@@ -4,8 +4,22 @@ import { connect } from "react-redux"
 import Deck from "./Deck"
 import TouchButton from "../components/TouchButton"
 import TextButton from "../components/TextButton"
+import { removeDeck } from "../actions/index"
+import { removeDeckAsync } from "../utils/api"
 
 class DeckDetail extends Component {
+	shouldComponentUpdate(nextProps) {
+		return nextProps.deck !== undefined
+	}
+
+	deleteDeck = (title) => {
+		const { removeDeck, navigation } = this.props
+
+		removeDeck(title)
+		removeDeckAsync(title)
+
+		navigation.goBack()
+	}
 	render() {
 		const { deck } = this.props
 		return (
@@ -31,7 +45,13 @@ class DeckDetail extends Component {
 						Start Quiz
 					</TouchButton>
 				</View>
-				<TextButton>Delete Deck</TextButton>
+				<TextButton
+					onPress={() => {
+						this.deleteDeck(deck.title)
+					}}
+				>
+					Delete Deck
+				</TextButton>
 			</View>
 		)
 	}
@@ -45,4 +65,4 @@ const mapStateToProps = (state, ownProps) => {
 	}
 }
 
-export default connect(mapStateToProps)(DeckDetail)
+export default connect(mapStateToProps, { removeDeck })(DeckDetail)
