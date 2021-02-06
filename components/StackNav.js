@@ -4,6 +4,7 @@ import AddDeck from "../screens/AddDeck"
 import TabNav from "./TabNav"
 import DeckDetail from "../screens/DeckDetail"
 import AddCard from "../screens/AddCard"
+import Quiz from "../screens/Quiz"
 
 const StackNavigatorConfig = {
     headerMode: "screen",
@@ -33,7 +34,18 @@ const StackConfig = {
             headerStyle: {
                 backgroundColor: "#00BBF2",
             },
-            title: "Deck Detail",
+            title: "Add Card",
+        },
+    },
+    Quiz: {
+        name: "Quiz",
+        component: Quiz,
+        options: {
+            headerTintColor: "#ffe3e3",
+            headerStyle: {
+                backgroundColor: "#00BBF2",
+            },
+            title: "Quiz",
         },
     },
 }
@@ -45,6 +57,7 @@ function StackNav() {
             <Stack.Screen {...StackConfig["TabNav"]} />
             <Stack.Screen {...StackConfig["DeckDetail"]} />
             <Stack.Screen {...StackConfig["AddCard"]} />
+            <Stack.Screen {...StackConfig["Quiz"]} />
         </Stack.Navigator>
     )
 }
