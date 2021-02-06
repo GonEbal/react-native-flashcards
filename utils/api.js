@@ -50,7 +50,7 @@ export async function removeDeckAsync(key) {
   }
 }
 
-export async function saveDeckTitleAsync(title) {
+export async function saveDeckAsync(title) {
   try {
     await AsyncStorage.mergeItem(
       DECKS_STORAGE_KEY,

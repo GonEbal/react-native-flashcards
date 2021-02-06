@@ -4,7 +4,7 @@ import { BLACK, Main, White, Gray } from "../utils/colors"
 import TouchButton from "../components/TouchButton"
 import { addDeck } from "../actions"
 import { connect } from "react-redux"
-import { saveDeckTitleAsync } from "../utils/api"
+import { saveDeckAsync } from "../utils/api"
 
 class AddDeck extends Component {
 	state = {
@@ -20,7 +20,10 @@ class AddDeck extends Component {
 		const { addDeck, navigation } = this.props
 
 		addDeck(title)
-		saveDeckTitleAsync(title)
+		saveDeckAsync(title).then(
+			() => navigation.goBack(),
+			navigation.navigate("DeckDetail", { title })
+		)
 
 		this.setState(() => ({
 			title: "",
@@ -35,7 +38,8 @@ class AddDeck extends Component {
 				</Text>
 				<TextInput
 					placeholder="Deck Title"
-					style={styles.inputField}
+					autoFocus={true}
+					style={styles.input}
 					onChangeText={this.handleChange}
 					value={title}
 				/>
@@ -58,12 +62,16 @@ const styles = StyleSheet.create({
 		padding: 20,
 		justifyContent: "center",
 	},
-	inputField: {
-		height: 40,
-		padding: 10,
-		marginBottom: 30,
-		borderColor: Gray,
+	input: {
 		borderWidth: 1,
+		borderColor: Gray,
+		backgroundColor: White,
+		paddingLeft: 10,
+		paddingRight: 10,
+		borderRadius: 5,
+		fontSize: 20,
+		height: 40,
+		marginBottom: 20,
 	},
 	title: {
 		color: Main,
