@@ -1,31 +1,33 @@
-import React, { Component } from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
-import { BLACK, Main, White, Gray } from "../utils/colors";
-import TouchButton from "../components/TouchButton";
-import { addDeck } from "../actions";
-import { connect } from "react-redux";
+import React, { Component } from "react"
+import { StyleSheet, Text, TextInput, View } from "react-native"
+import { BLACK, Main, White, Gray } from "../utils/colors"
+import TouchButton from "../components/TouchButton"
+import { addDeck } from "../actions"
+import { connect } from "react-redux"
+import { saveDeckTitleAsync } from "../utils/api"
 
 class AddDeck extends Component {
 	state = {
 		title: "",
-	};
+	}
 	handleChange = (title) => {
 		this.setState(() => ({
 			title: title,
-		}));
-	};
+		}))
+	}
 	handleSubmit = () => {
-		const { title } = this.state;
-		const { addDeck, navigation } = this.props;
+		const { title } = this.state
+		const { addDeck, navigation } = this.props
 
-		addDeck(title);
+		addDeck(title)
+		saveDeckTitleAsync(title)
 
 		this.setState(() => ({
 			title: "",
-		}));
-	};
+		}))
+	}
 	render() {
-		const { title } = this.state;
+		const { title } = this.state
 		return (
 			<View style={styles.container}>
 				<Text style={styles.title}>
@@ -40,13 +42,13 @@ class AddDeck extends Component {
 				<TouchButton
 					disabled={title === ""}
 					onPress={() => {
-						this.handleSubmit();
+						this.handleSubmit()
 					}}
 				>
 					Create Deck
 				</TouchButton>
 			</View>
-		);
+		)
 	}
 }
 
@@ -69,6 +71,6 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 		marginBottom: 30,
 	},
-});
+})
 
-export default connect(null, { addDeck })(AddDeck);
+export default connect(null, { addDeck })(AddDeck)

@@ -49,3 +49,19 @@ export async function removeDeckAsync(key) {
     console.log(err);
   }
 }
+
+export async function saveDeckTitleAsync(title) {
+  try {
+    await AsyncStorage.mergeItem(
+      DECKS_STORAGE_KEY,
+      JSON.stringify({
+        [title]: {
+          title,
+          questions: []
+        }
+      })
+    );
+  } catch (err) {
+    console.log(err);
+  }
+}
