@@ -1,15 +1,84 @@
 import React, { Component } from "react"
-import { View, StyleSheet, Text } from "react-native"
-import { YELLOW } from "../utils/colors"
+import { StyleSheet, Text, TextInput, View } from "react-native"
+import { BLACK, Main, White, Gray } from "../utils/colors"
+import TouchButton from "../components/TouchButton"
+import { addDeck } from "../actions"
+import { connect } from "react-redux"
+import { saveDeckAsync } from "../utils/api"
 
 class AddDeck extends Component {
+	state = {
+		title: "",
+	}
+	handleChange = (title) => {
+		this.setState(() => ({
+			title: title,
+		}))
+	}
+	handleSubmit = () => {
+		const { title } = this.state
+		const { addDeck, navigation } = this.props
+
+		addDeck(title)
+		saveDeckAsync(title).then(
+			() => navigation.goBack(),
+			navigation.navigate("DeckDetail", { title })
+		)
+
+		this.setState(() => ({
+			title: "",
+		}))
+	}
 	render() {
+		const { title } = this.state
 		return (
-			<View style={{ flex: 1 }}>
-				<Text>Add Deck</Text>
+			<View style={styles.container}>
+				<Text style={styles.title}>
+					What is the title of your new deck?
+				</Text>
+				<TextInput
+					placeholder="Deck Title"
+					autoFocus={true}
+					style={styles.input}
+					onChangeText={this.handleChange}
+					value={title}
+				/>
+				<TouchButton
+					disabled={title === ""}
+					onPress={() => {
+						this.handleSubmit()
+					}}
+				>
+					Create Deck
+				</TouchButton>
 			</View>
 		)
 	}
 }
 
-export default AddDeck
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		padding: 20,
+		justifyContent: "center",
+	},
+	input: {
+		borderWidth: 1,
+		borderColor: Gray,
+		backgroundColor: White,
+		paddingLeft: 10,
+		paddingRight: 10,
+		borderRadius: 5,
+		fontSize: 20,
+		height: 40,
+		marginBottom: 20,
+	},
+	title: {
+		color: Main,
+		fontSize: 36,
+		textAlign: "center",
+		marginBottom: 30,
+	},
+})
+
+export default connect(null, { addDeck })(AddDeck)
