@@ -10,8 +10,8 @@ const StackNavigatorConfig = {
     headerMode: "screen",
 }
 const StackConfig = {
-    TabNav: {
-        name: "DeckList",
+    Home: {
+        name: "Home",
         component: TabNav,
         options: { headerShown: false },
     },
@@ -54,7 +54,7 @@ const Stack = createStackNavigator()
 function StackNav() {
     return (
         <Stack.Navigator {...StackNavigatorConfig}>
-            <Stack.Screen {...StackConfig["TabNav"]} />
+            <Stack.Screen {...StackConfig["Home"]} />
             <Stack.Screen {...StackConfig["DeckDetail"]} />
             <Stack.Screen {...StackConfig["AddCard"]} />
             <Stack.Screen {...StackConfig["Quiz"]} />

@@ -1,10 +1,31 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
-import {BLACK, Main, White, Gray} from "../utils/colors";
-import TouchButton from "../components/TouchButton"
+import { BLACK, Main, White, Gray } from "../utils/colors";
+import TouchButton from "../components/TouchButton";
+import { addDeck } from "../actions";
+import { connect } from "react-redux";
 
 class AddDeck extends Component {
+	state = {
+		title: "",
+	};
+	handleChange = (title) => {
+		this.setState(() => ({
+			title: title,
+		}));
+	};
+	handleSubmit = () => {
+		const { title } = this.state;
+		const { addDeck, navigation } = this.props;
+
+		addDeck(title);
+
+		this.setState(() => ({
+			title: "",
+		}));
+	};
 	render() {
+		const { title } = this.state;
 		return (
 			<View style={styles.container}>
 				<Text style={styles.title}>
@@ -12,10 +33,18 @@ class AddDeck extends Component {
 				</Text>
 				<TextInput
 					placeholder="Deck Title"
-					placeholderTextColor={BLACK}
 					style={styles.inputField}
+					onChangeText={this.handleChange}
+					value={title}
 				/>
-				<TouchButton>Submit</TouchButton>
+				<TouchButton
+					disabled={title === ""}
+					onPress={() => {
+						this.handleSubmit();
+					}}
+				>
+					Create Deck
+				</TouchButton>
 			</View>
 		);
 	}
@@ -42,4 +71,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default AddDeck;
+export default connect(null, { addDeck })(AddDeck);
