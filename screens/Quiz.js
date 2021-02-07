@@ -4,6 +4,7 @@ import { connect } from "react-redux"
 import Message from "../components/Message"
 import { Main, White, RED, GREEN } from "../utils/colors"
 import TouchButton from "../components/TouchButton"
+import { setLocalNotification, clearLocalNotification } from "../utils/helpers"
 
 class Quiz extends Component {
 	state = {
@@ -11,6 +12,9 @@ class Quiz extends Component {
 		score: 0,
 		isFinished: false,
 		showAnswer: false,
+	}
+	componentDidMount() {
+		clearLocalNotification().then(setLocalNotification)
 	}
 	handleFlip = () => {
 		this.setState((state) => {
