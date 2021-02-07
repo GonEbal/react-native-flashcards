@@ -6,6 +6,7 @@ import TouchButton from "../components/TouchButton"
 import TextButton from "../components/TextButton"
 import { removeDeck } from "../actions/index"
 import { removeDeckAsync } from "../utils/api"
+import { Main, White } from "../utils/colors"
 
 class DeckDetail extends Component {
 	shouldComponentUpdate(nextProps) {
@@ -27,6 +28,8 @@ class DeckDetail extends Component {
 				<Deck title={deck.title} />
 				<View>
 					<TouchButton
+						btnStyle={{ backgroundColor: White, borderColor: Main }}
+						txtStyle={{ color: Main }}
 						onPress={() =>
 							this.props.navigation.navigate("AddCard", {
 								title: deck.title,
