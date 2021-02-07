@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { connect } from "react-redux";
-import Message from "../components/Message";
-import { Main, White } from "../utils/colors";
-import TouchButton from "../components/TouchButton";
+import React, { Component } from "react"
+import { StyleSheet, Text, View } from "react-native"
+import { connect } from "react-redux"
+import Message from "../components/Message"
+import { Main, White, RED, GREEN } from "../utils/colors"
+import TouchButton from "../components/TouchButton"
 
 class Quiz extends Component {
 	state = {
@@ -11,13 +11,57 @@ class Quiz extends Component {
 		score: 0,
 		isFinished: false,
 		showAnswer: false,
-	};
+	}
+	handleFlip = () => {
+		this.setState((state) => {
+			return {
+				...state,
+				["showAnswer"]: !state["showAnswer"],
+			}
+		})
+	}
+	handleAnswer(isCorrect) {
+		const { questionNumber, isFinished } = this.state
+		const { deck_length } = this.props
+		if (isCorrect) {
+			this.setState((state) => {
+				return {
+					...state,
+					["score"]: state["score"] + 10,
+				}
+			})
+		}
+		if (questionNumber + 1 === deck_length) {
+			this.setState((state) => {
+				return {
+					...state,
+					["isFinished"]: true,
+				}
+			})
+		} else {
+			this.setState((state) => {
+				return {
+					...state,
+					["questionNumber"]: state["questionNumber"] + 1,
+					["showAnswer"]: false,
+				}
+			})
+		}
+	}
+	handleRestart = () => {
+		this.setState(() => ({
+			questionNumber: 0,
+			score: 0,
+			isFinished: false,
+			showAnswer: false,
+		}))
+	}
 	render() {
-		const { deck, deck_length } = this.props;
-		const { questionNumber, score, isFinished, showAnswer } = this.state;
+		const { deck, deck_length, navigation } = this.props
+		const { questionNumber, score, isFinished, showAnswer } = this.state
 		const { question, answer } = deck.questions[questionNumber]
 			? deck.questions[questionNumber]
-			: {};
+			: {}
 		return (
 			<View style={styles.container}>
 				{deck_length !== 0 ? (
@@ -36,28 +80,53 @@ class Quiz extends Component {
 									<Message
 										message={`Your score is ${score}`}
 									/>
-									<TouchButton style={styles.button}>
+									<TouchButton
+										onPress={() => {
+											this.handleRestart()
+										}}
+									>
 										Restart
+									</TouchButton>
+									<TouchButton
+										btnStyle={{
+											backgroundColor: White,
+											borderColor: Main,
+										}}
+										txtStyle={{ color: Main }}
+										onPress={() => {
+											this.handleRestart()
+											navigation.goBack()
+										}}
+									>
+										Back To Deck
 									</TouchButton>
 								</React.Fragment>
 							) : showAnswer ? (
 								<React.Fragment>
-									<Message
-										message={answer}
-									/>
-									<TouchButton style={styles.button}>
+									<Message message={answer} />
+									<TouchButton
+										btnStyle={{ backgroundColor: GREEN }}
+										onPress={() => {
+											this.handleAnswer(true)
+										}}
+									>
 										Correct
 									</TouchButton>
-									<TouchButton style={styles.button}>
+									<TouchButton
+										btnStyle={{ backgroundColor: RED }}
+										onPress={() => {
+											this.handleAnswer(false)
+										}}
+									>
 										Incorrect
 									</TouchButton>
 								</React.Fragment>
 							) : (
 								<React.Fragment>
-									<Message
-										message={question}
-									/>
-									<TouchButton style={styles.button}>
+									<Message message={question} />
+									<TouchButton
+										onPress={() => this.handleFlip()}
+									>
 										Show Answer
 									</TouchButton>
 								</React.Fragment>
@@ -65,21 +134,19 @@ class Quiz extends Component {
 						</View>
 					</React.Fragment>
 				) : (
-					<Message message="YOU DON'T HAVE ANY DECKS" />
+					<Message message="YOU DON'T HAVE ANY CARDS." />
 				)}
 			</View>
-		);
+		)
 	}
 }
 
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		justifyContent: "flex-start",
 	},
 
 	header: {
-		flex: 1,
 		flexDirection: "row",
 		justifyContent: "space-between",
 		padding: 15,
@@ -89,25 +156,19 @@ const styles = StyleSheet.create({
 		fontSize: 22,
 	},
 	body: {
-		flex: 4,
-		alignItems: "center",
-		justifyContent: "center",
+		flex: 1,
+		paddingBottom: 80,
 	},
-	button: {
-		flex: 2,
-		justifyContent: "space-evenly",
-		alignItems: "center",
-	},
-});
+})
 
 const mapStateToProps = (state, ownProps) => {
-	const title = ownProps.route.params.title;
-	const deck = state[title];
-	const deck_length = Object.values(deck.questions).length;
+	const title = ownProps.route.params.title
+	const deck = state[title]
+	const deck_length = Object.values(deck.questions).length
 	return {
 		deck,
 		deck_length,
-	};
-};
+	}
+}
 
-export default connect(mapStateToProps)(Quiz);
+export default connect(mapStateToProps)(Quiz)
