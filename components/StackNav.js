@@ -1,10 +1,10 @@
-import { createStackNavigator } from "@react-navigation/stack"
 import React from "react"
-import AddDeck from "../screens/AddDeck"
+import { createStackNavigator } from "@react-navigation/stack"
 import TabNav from "./TabNav"
 import DeckDetail from "../screens/DeckDetail"
 import AddCard from "../screens/AddCard"
 import Quiz from "../screens/Quiz"
+import { main } from "../utils/colors"
 
 const StackNavigatorConfig = {
     headerMode: "screen",
@@ -21,7 +21,7 @@ const StackConfig = {
         options: {
             headerTintColor: "#ffe3e3",
             headerStyle: {
-                backgroundColor: "#00BBF2",
+                backgroundColor: main,
             },
             title: "Deck Detail",
         },
@@ -32,7 +32,7 @@ const StackConfig = {
         options: {
             headerTintColor: "#ffe3e3",
             headerStyle: {
-                backgroundColor: "#00BBF2",
+                backgroundColor: main,
             },
             title: "Add Card",
         },
@@ -43,7 +43,7 @@ const StackConfig = {
         options: {
             headerTintColor: "#ffe3e3",
             headerStyle: {
-                backgroundColor: "#00BBF2",
+                backgroundColor: main,
             },
             title: "Quiz",
         },

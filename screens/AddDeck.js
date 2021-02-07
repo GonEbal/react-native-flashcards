@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { StyleSheet, Text, TextInput, View } from "react-native"
-import { BLACK, Main, White, Gray } from "../utils/colors"
+import { main, white, gray } from "../utils/colors"
 import TouchButton from "../components/TouchButton"
 import { addDeck } from "../actions"
 import { connect } from "react-redux"
@@ -64,8 +64,8 @@ const styles = StyleSheet.create({
 	},
 	input: {
 		borderWidth: 1,
-		borderColor: Gray,
-		backgroundColor: White,
+		borderColor: gray,
+		backgroundColor: white,
 		paddingLeft: 10,
 		paddingRight: 10,
 		borderRadius: 5,
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
 		marginBottom: 20,
 	},
 	title: {
-		color: Main,
+		color: main,
 		fontSize: 36,
 		textAlign: "center",
 		marginBottom: 30,

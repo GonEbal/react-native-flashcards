@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { View, StyleSheet, Text, TextInput } from "react-native"
 import TouchButton from "../components/TouchButton"
-import { Gray, Main, White } from "../utils/colors"
+import { gray, white } from "../utils/colors"
 import { connect } from "react-redux"
 import { addCard } from "../actions/index"
 import { addCardAsync } from "../utils/api"
@@ -81,8 +81,8 @@ const styles = StyleSheet.create({
 	},
 	input: {
 		borderWidth: 1,
-		borderColor: Gray,
-		backgroundColor: White,
+		borderColor: gray,
+		backgroundColor: white,
 		paddingLeft: 10,
 		paddingRight: 10,
 		borderRadius: 5,

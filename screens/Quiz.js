@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { StyleSheet, Text, View } from "react-native"
 import { connect } from "react-redux"
 import Message from "../components/Message"
-import { Main, White, RED, GREEN } from "../utils/colors"
+import { main, white, red, green } from "../utils/colors"
 import TouchButton from "../components/TouchButton"
 import { setLocalNotification, clearLocalNotification } from "../utils/helpers"
 
@@ -93,10 +93,10 @@ class Quiz extends Component {
 									</TouchButton>
 									<TouchButton
 										btnStyle={{
-											backgroundColor: White,
-											borderColor: Main,
+											backgroundColor: white,
+											borderColor: main,
 										}}
-										txtStyle={{ color: Main }}
+										txtStyle={{ color: main }}
 										onPress={() => {
 											this.handleRestart()
 											navigation.goBack()
@@ -109,7 +109,7 @@ class Quiz extends Component {
 								<React.Fragment>
 									<Message message={answer} />
 									<TouchButton
-										btnStyle={{ backgroundColor: GREEN }}
+										btnStyle={{ backgroundColor: green }}
 										onPress={() => {
 											this.handleAnswer(true)
 										}}
@@ -117,7 +117,7 @@ class Quiz extends Component {
 										Correct
 									</TouchButton>
 									<TouchButton
-										btnStyle={{ backgroundColor: RED }}
+										btnStyle={{ backgroundColor: red }}
 										onPress={() => {
 											this.handleAnswer(false)
 										}}

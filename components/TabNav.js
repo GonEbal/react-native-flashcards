@@ -3,7 +3,7 @@ import { Ionicons } from "@expo/vector-icons"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs"
 import DeckList from "../screens/DeckList"
-import { Main, Gray } from "../utils/colors"
+import { main, gray } from "../utils/colors"
 import AddDeck from "../screens/AddDeck"
 import { Platform } from "react-native"
 
@@ -28,8 +28,8 @@ function TabNav() {
                 },
             })}
             tabBarOptions={{
-                activeTintColor: Main,
-                inactiveTintColor: Gray,
+                activeTintColor: main,
+                inactiveTintColor: gray,
                 style: {
                     height: Platform.OS === "ios" ? 80 : 50,
                 },

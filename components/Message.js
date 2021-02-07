@@ -1,12 +1,12 @@
-import { StyleSheet, Text, View } from "react-native"
-import { BLACK } from "../utils/colors"
 import React from "react"
+import { StyleSheet, Text, View } from "react-native"
+import { black } from "../utils/colors"
 
 export default function Message(props) {
     const { message } = props
     return (
         <View style={styles.resultContainer}>
-            <Text style={{ color: BLACK, fontSize: 26, textAlign: "center" }}>
+            <Text style={{ color: black, fontSize: 26, textAlign: "center" }}>
                 {message}
             </Text>
         </View>

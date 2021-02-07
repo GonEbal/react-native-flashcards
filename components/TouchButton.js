@@ -1,6 +1,6 @@
 import React from "react"
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native"
-import { White, Main, RED, Gray, lightGray } from "../utils/colors"
+import { white, main, lightGray } from "../utils/colors"
 
 export default function TouchButton({
   children,
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   btn: {
     width: 200,
     height: 50,
-    backgroundColor: Main,
+    backgroundColor: main,
     borderRadius: 5,
     justifyContent: "center",
     alignItems: "center",
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   btnText: {
     fontSize: 20,
     fontWeight: "bold",
-    color: White,
+    color: white,
   },
   btnTextDisabled: {
     color: '#666666',
