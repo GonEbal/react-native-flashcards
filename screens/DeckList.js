@@ -9,7 +9,7 @@ import {
 import { connect } from "react-redux"
 import { handleInitialData } from "../actions"
 import Deck from "./Deck"
-import { Main, White, Gray } from "../utils/colors"
+import { main } from "../utils/colors"
 import Message from "../components/Message"
 
 class DeckList extends Component {
@@ -22,8 +22,7 @@ class DeckList extends Component {
 		return (
 			<ScrollView style={styles.container}>
 				<Text style={styles.title}>Mobile Flashcards</Text>
-				{isDecks 
-					? (
+				{isDecks ? (
 					Object.values(decks).map((deck) => {
 						return (
 							<TouchableOpacity
@@ -56,7 +55,7 @@ const styles = StyleSheet.create({
 		fontSize: 40,
 		textAlign: "center",
 		marginBottom: 16,
-		color: Main,
+		color: main,
 	},
 })
 

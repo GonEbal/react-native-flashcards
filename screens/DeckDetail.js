@@ -1,12 +1,12 @@
 import React, { Component } from "react"
-import { View, Text, StyleSheet } from "react-native"
+import { View } from "react-native"
 import { connect } from "react-redux"
 import Deck from "./Deck"
 import TouchButton from "../components/TouchButton"
 import TextButton from "../components/TextButton"
 import { removeDeck } from "../actions/index"
 import { removeDeckAsync } from "../utils/api"
-import { Main, White } from "../utils/colors"
+import { main, white } from "../utils/colors"
 
 class DeckDetail extends Component {
 	shouldComponentUpdate(nextProps) {
@@ -28,8 +28,8 @@ class DeckDetail extends Component {
 				<Deck title={deck.title} />
 				<View>
 					<TouchButton
-						btnStyle={{ backgroundColor: White, borderColor: Main }}
-						txtStyle={{ color: Main }}
+						btnStyle={{ backgroundColor: white, borderColor: main }}
+						txtStyle={{ color: main }}
 						onPress={() =>
 							this.props.navigation.navigate("AddCard", {
 								title: deck.title,

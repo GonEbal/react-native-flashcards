@@ -1,6 +1,6 @@
 import React from "react"
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native"
-import { RED } from "../utils/colors"
+import { red } from "../utils/colors"
 
 export default function TextButton({ children, onPress, txtStyle = {} }) {
   return (
@@ -18,6 +18,6 @@ const styles = StyleSheet.create({
   },
   btnText: {
     fontSize: 20,
-    color: RED,
+    color: red,
   },
 })

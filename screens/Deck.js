@@ -1,6 +1,6 @@
 import React from "react"
 import { View, Text, StyleSheet } from "react-native"
-import { Main, White, Gray } from "../utils/colors"
+import { main, white } from "../utils/colors"
 import { connect } from "react-redux"
 
 const Deck = (props) => {
@@ -23,7 +23,7 @@ const Deck = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: White,
+    backgroundColor: white,
     borderRadius: Platform.OS === "ios" ? 16 : 2,
     padding: 20,
     marginLeft: 10,
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   },
   cardCount: {
     fontSize: 18,
-    color: Main,
+    color: main,
   },
 })
 
