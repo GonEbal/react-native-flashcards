@@ -21,6 +21,16 @@ export async function getDecks() {
   }
 }
 
+export async function getDeck(id) {
+  try {
+    const storeResults = await AsyncStorage.getItem(DECKS_STORAGE_KEY);
+
+    return JSON.parse(storeResults)[id];
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 export async function addCardAsync(title, card) {
   try {
     const deck = await getDeck(title);
