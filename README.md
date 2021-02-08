@@ -1,4 +1,4 @@
-# My Universal React Project
+# My Mobile-Flashcards Project
 
 <p>
   <!-- iOS -->
@@ -15,8 +15,13 @@
   </a>
 </p>
 
+## The Project has been tested on iOS and Android. 
+
+![gif #1](utils/screenshot.png)
+
 ## 🚀 How to use
 
+- clone the Project - `https://github.com/GonEbal/react-native-flashcards.git`
 - Install packages with `yarn` or `npm install`.
   - If you have native iOS code run `npx pod-install`
 - Run `yarn start` to start the bundler.
