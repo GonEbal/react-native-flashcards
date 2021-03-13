@@ -31,7 +31,7 @@
     "start": "expo start",
     "predeploy": "yarn run build",
     "deploy": "gh-pages -d build",
-    "build": "react-scripts build",
+    "build": "babel src -d lib",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo web",
