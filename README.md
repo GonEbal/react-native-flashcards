@@ -17,7 +17,7 @@
 
 ## The Project has been tested on iOS and Android. 
 
-![gif #1](utils/preview.gif)
+![gif #1](utils/preview.dif =276x597)
 
 ## 🚀 How to use
 
