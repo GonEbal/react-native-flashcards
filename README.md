@@ -18,8 +18,6 @@
 ## The Project has been tested on iOS and Android. 
 <img src="utils/preview.gif" alt="gif#1" width="276" height="597" />
 
-![gif #1](utils/preview.gif | 276x597)
-
 ## 🚀 How to use
 
 - clone the Project - `https://github.com/GonEbal/react-native-flashcards.git`
