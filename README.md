@@ -17,8 +17,7 @@
 
 ## The Project has been tested on iOS and Android. 
 
-![gif #1](utils/screenshot.png)
-![gif #2](utils/test.gif)
+![gif #1](utils/preview.gif)
 
 ## 🚀 How to use
 
